@@ -14,6 +14,7 @@ export default class NotFound extends React.Component {
 export default (
   <Router history={createHistory()}>
     <Route path="/" component={Home}>
+      <Route path="quizzes/:quiz_id/questions/:question_id" component={QuestionContainer} />
     </Route>
   </Router>
 );
