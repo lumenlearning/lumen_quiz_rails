@@ -1,11 +1,18 @@
 import React from 'react';
-import Quizzes from './Quizzes';
 
 export default class Main extends React.Component {
+  constructor(props) {
+    super(props) 
+
+    this.state = {
+
+    }
+  }
+
   render() {
     return (
       <div>
-        <Quizzes origin={() => this.origin()} readFromAPI={(url) => this.readFromAPI(url)} />
+        QuizForm
       </div>
     )
   }

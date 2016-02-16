@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from '../components/Main';
+import Home from '../components/Home';
 import {createHistory} from 'history';
 import { Route, IndexRoute, Router, RouterContext } from 'react-router';
 
@@ -13,7 +13,7 @@ export default class NotFound extends React.Component {
 
 export default (
   <Router history={createHistory()}>
-    <Route path="/" component={Main}>
+    <Route path="/" component={Home}>
     </Route>
   </Router>
 );
