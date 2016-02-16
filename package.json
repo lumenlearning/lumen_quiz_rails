@@ -4,7 +4,7 @@
   "description": "Simple quiz creation interface for teachers",
   "main": "client/App.js",
   "scripts": {
-    "devserve": "webpack-dev-server -d --config webpack.config.js --content-base public/",
+    "devserve": "webpack-dev-server -d --config webpack.config.js --content-base public",
     "devbuild": "webpack -d --config webpack.config.js --profile --progress --colors"
   },
   "repository": {

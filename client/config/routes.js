@@ -13,7 +13,7 @@ export default class NotFound extends React.Component {
 
 export default (
   <Router history={createHistory()}>
-    <Route path="/moo" component={Main}>
+    <Route path="/" component={Main}>
     </Route>
   </Router>
 );

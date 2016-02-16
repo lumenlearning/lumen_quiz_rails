@@ -6,7 +6,8 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    filename: "./public/bundle.js"
+    path: './public',
+    filename: 'bundle.js'
   },
   devtool: 'eval-source-map',
   module: {
