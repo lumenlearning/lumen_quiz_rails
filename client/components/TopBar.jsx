@@ -4,7 +4,7 @@ import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
-export default class Main extends React.Component {
+export default class TopBar extends React.Component {
   constructor(props) {
     super(props) 
 
@@ -42,8 +42,6 @@ export default class Main extends React.Component {
           <ToolbarTitle className="top-color quiz-title" text={this.state.quizName} />
         <ToolbarSeparator className="tb-separator" />
         <ToolbarTitle className="top-color-secondary page-title" text={this.state.page} />
-        </ToolbarGroup>
-        <ToolbarGroup float="right">
         </ToolbarGroup>
       </Toolbar>
     )

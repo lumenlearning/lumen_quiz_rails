@@ -3,7 +3,7 @@ import Quizzes from './Quizzes';
 import QuizForm from './QuizForm';
 import TopBar from './TopBar';
 
-export default class Main extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props) 
 
@@ -14,10 +14,12 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="main-container">
         <TopBar location={this.props.location} />
-        <QuizForm />
-        <Quizzes />
+        <div className="container">
+          <QuizForm />
+          <Quizzes />
+        </div>
       </div>
     )
   }
