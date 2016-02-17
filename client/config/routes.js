@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateQuiz from '../components/CreateQuiz';
 import Home from '../components/Home';
-import QuestionContainer from '../components/QuestionContainer';
+import QuestionContainer from '../components/NewQuestion/QuestionContainer';
 import {createHistory} from 'history';
 import { Route, IndexRoute, Router, RouterContext } from 'react-router';
 
