@@ -2,11 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
+import QuizzesActions from '../Actions/QuizzesActions.js'
 
 export default class QuizForm extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {errorText: null}
+
+    this.transitionToQueston = this.transitionToQueston.bind(this);
   }
 
   render() {
@@ -44,7 +47,7 @@ export default class QuizForm extends React.Component {
   handleSubmit() {
     if (this.refs.quizTitle.getValue() != "") {
       const quizName = this.refs.quizTitle.getValue();
-      this.writeQuizToApi(JSON.stringify({name: quizName}));
+      QuizzesActions.writeQuizToApi(JSON.stringify({name: quizName}), this.transitionToQueston);
     } else {
       this.setState({
         errorText: "This field is required."
@@ -52,21 +55,7 @@ export default class QuizForm extends React.Component {
     }
   }
 
-  writeQuizToApi(data) {
-    const history = this.props.history
-    axios({
-      url: 'http://localhost:3000/quizzes',
-      params: {data},
-      method: 'post',
-      headers: {'Access-Control-Allow-Origin': '*'},
-      history: history
-    })
-    .then((response) => {
-      const quizID = response.data.id
-      response.config.history.pushState(null, "/quizzes/" + quizID + '/questions/new')
-    })
-    .catch(function (response) {
-      console.log(response);
-    });
+  transitionToQueston(quizID) {
+    this.props.history.pushState(null, "/quizzes/" + quizID + "/questions/new")
   }
 }
