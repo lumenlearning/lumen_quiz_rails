@@ -53,17 +53,20 @@ export default class QuizForm extends React.Component {
   }
 
   writeQuizToApi(data) {
+    const history = this.props.history
     axios({
       url: 'http://localhost:3000/quizzes',
       params: {data},
       method: 'post',
-      headers: {'Access-Control-Allow-Origin': '*'}
+      headers: {'Access-Control-Allow-Origin': '*'},
+      history: history
     })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (response) {
-        console.log(response);
-      });
+    .then((response) => {
+      const quizID = response.data.id
+      response.config.history.pushState(null, "/quizzes/" + quizID + '/questions/new')
+    })
+    .catch(function (response) {
+      console.log(response);
+    });
   }
 }
