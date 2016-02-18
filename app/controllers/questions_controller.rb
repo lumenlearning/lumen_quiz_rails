@@ -1,10 +1,9 @@
-require 'pry'
 class QuestionsController < ApplicationController
   def update
     data = params[:data]
     @question = Question.find(params[:id])
     if @question.update(content: data)
-      render json: @question, status: :created
+      render json: @question, include: :answers
     else
       render json: @question.errors, status: :unprocessable_entity
     end
@@ -12,6 +11,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    render json: @question
+    render json: @question, include: :answers
   end
 end

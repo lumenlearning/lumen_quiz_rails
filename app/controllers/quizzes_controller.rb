@@ -9,6 +9,8 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.create(name: data['name'])
     @question = Question.create()
     @quiz.questions.push(@question)
+    @answer = Answer.create(correct: false)
+    @question.answers.push(@answer)
     if @quiz.save
       render json: @quiz, include: :questions, status: :created
     else

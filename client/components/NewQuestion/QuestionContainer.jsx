@@ -1,7 +1,8 @@
 import React from 'react';
-import QuestionContent from './QuestionContent'
 import QuestionActions from '../../Actions/QuestionActions'
 import QuestionStore from '../../Stores/QuestionStore'
+import QuestionContent from './QuestionContent'
+import AnswersContainer from './AnswersContainer'
 
 export default class QuestionContainer extends React.Component {
   constructor(props) {
@@ -20,18 +21,28 @@ export default class QuestionContainer extends React.Component {
       <div>
         <h3>Question</h3>
         <QuestionContent 
-          quiz_id={this.props.params.quiz_id} 
-          question_id={this.props.params.question_id}
-          handleUpdateQuestion={(text) => this.handleUpdateQuestion(text)}
-          content={this.state.question.content}
+          quiz_id = {this.props.params.quiz_id} 
+          question_id = {this.props.params.question_id}
+          handleUpdateQuestion = {(text) => this.handleUpdateQuestion(text)}
+          content = {this.state.question.content}
         />
         <br />
+        <AnswersContainer 
+          quiz_id = {this.props.params.quiz_id} 
+          question_id = {this.state.question_id}
+          answers = {this.state.question.answers}
+          handleUpdateAnswerField = {(val, id) => this.handleUpdateAnswerField(val, id)}
+        />
       </div>
     )
   }
 
   handleUpdateQuestion(text) {
-    QuestionActions.update(text,this.props.params.question_id, this.onChange);
+    QuestionActions.updateQuestion(text,this.props.params.question_id, this.onChange);
+  }
+
+  handleUpdateAnswerField(val, id) {
+    QuestionActions.updateAnswer(val, id, this.onChange)
   }
 
   onChange() {
