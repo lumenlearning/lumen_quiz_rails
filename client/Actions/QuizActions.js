@@ -1,7 +1,7 @@
 import alt from '../alt';
 import axios from 'axios';
 
-class QuizzesActions {
+class QuizActions {
   fetchAllQuizzes(callback) {
     return (dispatch)=>{
       axios({
@@ -21,7 +21,7 @@ class QuizzesActions {
     }
   }
 
-  writeQuizToApi(data, callback) {
+  create(data, callback) {
     return (dispatch)=>{
       axios({
         url: 'http://localhost:3000/quizzes',
@@ -32,7 +32,7 @@ class QuizzesActions {
       .then(
         (response) => {
           dispatch(response.data)
-          callback(response.data.id)
+          callback(response.data.id, response.data.questions[0].id)
         }
       )
       .catch((response) => {
@@ -42,4 +42,4 @@ class QuizzesActions {
   }
 }
 
-export default alt.createActions(QuizzesActions);
+export default alt.createActions(QuizActions);

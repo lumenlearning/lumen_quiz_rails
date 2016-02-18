@@ -17,7 +17,7 @@ export default (
   <Router history={createHistory()}>
     <Route path="/" component={Home} >
       <IndexRoute component={CreateQuiz} /> 
-      <Route path="quizzes/:quiz_id/questions/new" component={QuestionContainer} />
+      <Route path="quizzes/:quiz_id/questions/:question_id" component={QuestionContainer} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>

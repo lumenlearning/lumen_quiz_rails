@@ -13,7 +13,7 @@ export default class QuestionContent extends React.Component {
     return (
       <div id='tinymice'>
         <TinyMCEInput
-          value={this.state.content}
+          value={this.props.content}
           tinymceConfig={{
             plugins: 'link image lists preview table autoresize media preview',
             toolbar: ' bold italic | fontsizeselect | image media link | table | preview',
@@ -24,17 +24,15 @@ export default class QuestionContent extends React.Component {
             fontsize_formats: '10pt 12pt 14pt 18pt 24pt 36pt',
             font_formats: 'Raleway, Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n'
           }}
-          onChange ={(text) => this.handleQuestion(text)}
+          onChange ={(text) => this.updateQuestion(text)}
           className="tiny-form" 
         />
       </div>
     )
   }
 
-  handleQuestion(text) {
-    this.setState({
-      content: text
-    })
+  updateQuestion(text) {
+    this.props.handleUpdateQuestion(text)
   }
 
 }

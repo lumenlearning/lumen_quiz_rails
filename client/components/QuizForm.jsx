@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
-import QuizzesActions from '../Actions/QuizzesActions.js'
+import QuizActions from '../Actions/QuizActions.js'
 
 export default class QuizForm extends React.Component {
   constructor(props, context) {
@@ -47,7 +47,7 @@ export default class QuizForm extends React.Component {
   handleSubmit() {
     if (this.refs.quizTitle.getValue() != "") {
       const quizName = this.refs.quizTitle.getValue();
-      QuizzesActions.writeQuizToApi(JSON.stringify({name: quizName}), this.transitionToQueston);
+      QuizActions.create(JSON.stringify({name: quizName}), this.transitionToQueston);
     } else {
       this.setState({
         errorText: "This field is required."
@@ -55,7 +55,7 @@ export default class QuizForm extends React.Component {
     }
   }
 
-  transitionToQueston(quizID) {
-    this.props.history.pushState(null, "/quizzes/" + quizID + "/questions/new")
+  transitionToQueston(quizID, questionID) {
+    this.props.history.pushState(null, "/quizzes/" + quizID + "/questions/" + questionID)
   }
 }
