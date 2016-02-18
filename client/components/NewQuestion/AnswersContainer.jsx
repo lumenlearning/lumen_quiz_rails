@@ -120,7 +120,7 @@ export default class AnswersContainer extends React.Component {
   }
 
   handleUpdateAnswer(val, id) {
-    this.props.handleUpdateAnswerField(val, id)
+    this.props.handleUpdateAnswer(val, id)
   }
 
 }

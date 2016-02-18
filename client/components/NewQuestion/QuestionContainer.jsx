@@ -31,7 +31,7 @@ export default class QuestionContainer extends React.Component {
           quiz_id = {this.props.params.quiz_id} 
           question_id = {this.state.question_id}
           answers = {this.state.question.answers}
-          handleUpdateAnswerField = {(val, id) => this.handleUpdateAnswerField(val, id)}
+          handleUpdateAnswer = {(val, id) => this.handleUpdateAnswer(val, id)}
         />
       </div>
     )
@@ -41,7 +41,7 @@ export default class QuestionContainer extends React.Component {
     QuestionActions.updateQuestion(text,this.props.params.question_id, this.onChange);
   }
 
-  handleUpdateAnswerField(val, id) {
+  handleUpdateAnswer(val, id) {
     QuestionActions.updateAnswer(val, id, this.onChange)
   }
 

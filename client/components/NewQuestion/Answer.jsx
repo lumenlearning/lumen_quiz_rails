@@ -52,6 +52,7 @@ export default class Answer extends React.Component {
   }
 
   correctnessToggle() {
+    this.props.correct ? this.props.handleUpdateAnswer(false, this.props.id) : this.props.handleUpdateAnswer(true, this.props.id)
   }
 
   updateAnswer(e) {
