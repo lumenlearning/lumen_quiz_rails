@@ -45,7 +45,7 @@ export default class PreviewQuiz extends React.Component {
           content = {question.content}
           quiz_id = {this.props.params.quiz_id}
           history = {this.props.history}
-          deleteQuestion = {(id) => this.deleteQuestion(id)}
+          handleDeleteQuestion = {(id) => this.handleDeleteQuestion(id)}
           openSnackbar = {() => this.openSnackbar()}
           handleEditQuestionInline = {(text,questionID) => this.handleEditQuestionInline(text,questionID)}
           handleEditAnswerInline = {(val, questionID, id) => this.handleEditAnswerInline(val, questionID, id)}
@@ -90,7 +90,8 @@ export default class PreviewQuiz extends React.Component {
     });
   }
 
-  deleteQuestion(id) {
+  handleDeleteQuestion(id) {
+    QuizActions.deleteQuestion(id, this.onChange);
   }
 
   addNewQuestion() {

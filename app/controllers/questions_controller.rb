@@ -25,6 +25,8 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:id])
+    @quiz = Quiz.find(@question.quiz_id)
     @question.destroy
+    render json: @quiz, :include => {:questions => {:include => :answers}}
   end
 end

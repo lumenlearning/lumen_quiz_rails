@@ -150,7 +150,7 @@ export default class PreviewQuestion extends React.Component {
 
   deleteQuestion() {
     if (confirm("Are you sure you want to delete this question?")) {
-      this.props.deleteQuestion(this.props.id);  
+      this.props.handleDeleteQuestion(this.props.id);  
     }
   }
 

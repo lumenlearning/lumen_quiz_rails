@@ -4,7 +4,7 @@ import QuizActions from '../Actions/QuizActions.js'
 class QuizStore {
   constructor(){
     this.bindListeners({
-      set: [QuizActions.fetchQuiz],
+      set: [QuizActions.fetchQuiz, QuizActions.deleteQuestion],
     });
     this.state = {}
   }
