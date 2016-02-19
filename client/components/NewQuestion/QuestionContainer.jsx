@@ -21,15 +21,20 @@ export default class QuestionContainer extends React.Component {
       question: QuestionStore.getState(),
       errorMessage: '',
       open: false,
-      anchorEl: null
+      anchorEl: null,
     }
 
     this.onChange = this.onChange.bind(this);
+    this.transitionQuestion = this.transitionQuestion.bind(this);
     this.checkMultipleCorrect = this.checkMultipleCorrect.bind(this);
   }
 
   componentDidMount() {
     QuestionActions.fetch(this.props.params.question_id, this.onChange)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    QuestionActions.fetch(nextProps.params.question_id, this.onChange)
   }
 
   onChange() {
@@ -107,7 +112,7 @@ export default class QuestionContainer extends React.Component {
   }
 
   handleUpdateGuid(guid) {
-    QuestionActions.updateGuid(guid, this.props.params.question_id, this.state.guid.id, this.onChange)
+    QuestionActions.updateGuid(guid, this.props.params.question_id, this.state.question.guid.id, this.onChange)
   }
 
   checkMultipleCorrect() {
@@ -144,14 +149,18 @@ export default class QuestionContainer extends React.Component {
     if (checkedAnswers.length === 0 ) {
       errors = errors + "You must include at least one correct answer. " 
     }
-    if (!question.guid) {
+    if (question.guid.short_title === '') {
       errors = errors + "You must align the question with a Learning Outcome." 
     }
     if (errors !== '') {
       this.handleError(e, errors)
     } else if (errors === '' && e.target.parentElement.parentElement.parentElement.className === 'submit-button') {
-      alert("you good to go!")
+      QuestionActions.createQuestion(this.props.params.quiz_id, this.transitionQuestion)
     }
+  }
+
+  transitionQuestion(quizID, questionID) {
+    this.props.history.pushState(null, "/quizzes/" + quizID + '/questions/' + questionID)
   }
 
 }

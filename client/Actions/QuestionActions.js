@@ -101,6 +101,25 @@ class QuestionActions {
     }
   }
 
+  createQuestion(quizID, callback) {
+    return (dispatch)=>{
+      axios({
+        url: 'http://localhost:3000' + '/questions',
+        method: 'post',
+        params: {quizID},
+        headers: {'Access-Control-Allow-Origin': '*'}
+      })
+      .then(
+        (response) => {
+          callback(response.data.quiz_id, response.data.id)
+        }
+      )
+      .catch((response) => {
+        console.log(response);
+      });
+    }
+  }
+
   fetch(questionID, callback) {
     return (dispatch)=>{
       axios({

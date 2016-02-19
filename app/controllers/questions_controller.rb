@@ -1,3 +1,4 @@
+require 'pry'
 class QuestionsController < ApplicationController
   def update
     data = params[:data]
@@ -7,6 +8,14 @@ class QuestionsController < ApplicationController
     else
       render json: @question.errors, status: :unprocessable_entity
     end
+  end
+
+  def create
+    @quiz = Quiz.find(params[:quizID])
+    @question = Question.create(content: '', quiz_id: @quiz.id)
+    @answer = Answer.create(content: '', correct: false, question_id: @question.id)
+    @guid = Guid.create(short_title: '', question_id: @question.id)
+    render json: @question, :include => [:answers, :guid]
   end
 
   def show
