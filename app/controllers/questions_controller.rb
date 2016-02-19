@@ -22,4 +22,9 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     render json: @question, :include => [:answers, :guid]
   end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+  end
 end

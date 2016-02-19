@@ -1,17 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import Quiz from './Quiz';
-import QuizStore from '../Stores/QuizStore.js'
-import QuizActions from '../Actions/QuizActions.js'
+import QuizzesStore from '../Stores/QuizzesStore.js'
+import QuizzesActions from '../Actions/QuizzesActions.js'
 
 export default class Quizzes extends React.Component {
   constructor(props) {
     super(props)
-    this.state = QuizStore.getState();
+    this.state = QuizzesStore.getState();
   }
 
   componentDidMount() {
-    QuizActions.fetchAllQuizzes(() => this.setState(QuizStore.getState()));
+    QuizzesActions.fetchAllQuizzes(() => this.setState(QuizzesStore.getState()));
   }
 
   render() {

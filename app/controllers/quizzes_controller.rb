@@ -4,6 +4,11 @@ class QuizzesController < ApplicationController
     render json: @quizzes
   end
 
+  def show
+    @quiz = Quiz.find(params[:id])
+    render json: @quiz, :include => {:questions => {:include => :answers}}
+  end
+
   def create
     data = JSON.parse(params[:data])
     @quiz = Quiz.create(name: data['name'])

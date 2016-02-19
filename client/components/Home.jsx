@@ -1,6 +1,4 @@
 import React from 'react';
-import Quizzes from './Quizzes';
-import QuizForm from './QuizForm';
 import TopBar from './TopBar';
 
 export default class Home extends React.Component {

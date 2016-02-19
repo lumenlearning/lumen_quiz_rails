@@ -2,6 +2,7 @@ import React from 'react';
 import CreateQuiz from '../components/CreateQuiz';
 import Home from '../components/Home';
 import QuestionContainer from '../components/NewQuestion/QuestionContainer';
+import PreviewQuiz from '../components/PreviewQuiz';
 import {createHistory} from 'history';
 import { Route, IndexRoute, Router, RouterContext } from 'react-router';
 
@@ -18,6 +19,7 @@ export default (
     <Route path="/" component={Home} >
       <IndexRoute component={CreateQuiz} /> 
       <Route path="quizzes/:quiz_id/questions/:question_id" component={QuestionContainer} />
+      <Route path="quizzes/:quiz_id/preview" component={PreviewQuiz} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>

@@ -6,6 +6,7 @@ import AnswersContainer from './AnswersContainer'
 import GuidSearch from './GuidSearch.jsx';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Popover from 'material-ui/lib/popover/popover';
+import FlatButton from 'material-ui/lib/flat-button';
 
 const popoverStyles = {
   padding: '10px',
@@ -26,6 +27,7 @@ export default class QuestionContainer extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.transitionQuestion = this.transitionQuestion.bind(this);
+    this.previewQuiz = this.previewQuiz.bind(this);
     this.checkMultipleCorrect = this.checkMultipleCorrect.bind(this);
   }
 
@@ -58,6 +60,12 @@ export default class QuestionContainer extends React.Component {
   render() {
     return (
       <div>
+        <FlatButton 
+          className="top-button" 
+          label="Save & Preview Quiz" 
+          default={true} 
+          onClick={(e) => this.validateAndSubmit(e)}
+        />
         <GuidSearch 
           guid = {this.state.question.guid}
           handleUpdateGuid = {(guid) => this.handleUpdateGuid(guid)}
@@ -152,15 +160,27 @@ export default class QuestionContainer extends React.Component {
     if (question.guid.short_title === '') {
       errors = errors + "You must align the question with a Learning Outcome." 
     }
-    if (errors !== '') {
+    if (errors !== '' && e.target.parentElement.parentElement.className === 'top-button') {
+      if (confirm("You have not completed this question. If you continue to the preview it will be deleted.")) {
+        QuestionActions.deleteQuestion(this.props.params.question_id, this.previewQuiz)
+      }
+    }
+    else if (errors !== '') {
       this.handleError(e, errors)
     } else if (errors === '' && e.target.parentElement.parentElement.parentElement.className === 'submit-button') {
       QuestionActions.createQuestion(this.props.params.quiz_id, this.transitionQuestion)
+    } else if (errors === '' && e.target.parentElement.parentElement.className === 'top-button') {
+      this.previewQuiz();
     }
   }
 
   transitionQuestion(quizID, questionID) {
     this.props.history.pushState(null, "/quizzes/" + quizID + '/questions/' + questionID)
+  }
+
+  previewQuiz() {
+    const quizID = this.props.params.quiz_id
+    this.props.history.pushState(null, '/quizzes/' + quizID + '/preview')
   }
 
 }

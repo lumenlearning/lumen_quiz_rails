@@ -120,6 +120,24 @@ class QuestionActions {
     }
   }
 
+  deleteQuestion(questionID, callback) {
+    return (dispatch)=>{
+      axios({
+        url: 'http://localhost:3000' + '/questions/' + questionID,
+        method: 'delete',
+        headers: {'Access-Control-Allow-Origin': '*'}
+      })
+      .then(
+        (response) => {
+          callback()
+        }
+      )
+      .catch((response) => {
+        console.log(response);
+      });
+    }
+  }
+
   fetch(questionID, callback) {
     return (dispatch)=>{
       axios({
