@@ -7,7 +7,6 @@ class QuizzesActions {
       axios({
         url: 'http://localhost:3000' + '/quizzes',
         method: 'get',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -26,7 +25,6 @@ class QuizzesActions {
       axios({
         url: 'http://localhost:3000' + '/quizzes/' + quizID,
         method: 'get',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -46,7 +44,6 @@ class QuizzesActions {
         url: 'http://localhost:3000/quizzes',
         params: {data},
         method: 'post',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {

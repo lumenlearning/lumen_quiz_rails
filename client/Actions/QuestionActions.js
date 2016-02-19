@@ -8,7 +8,6 @@ class QuestionActions {
         url: 'http://localhost:3000' + '/questions/' + questionID,
         method: 'put',
         params: {data},
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -28,7 +27,6 @@ class QuestionActions {
         url: 'http://localhost:3000' + '/questions/' + questionID + '/answers/' + answerID,
         method: 'put',
         params: {data},
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -49,7 +47,6 @@ class QuestionActions {
         url: 'http://localhost:3000' + '/questions/' + questionID + '/guids/' + guidID,
         method: 'put',
         params: {data},
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -68,7 +65,6 @@ class QuestionActions {
       axios({
         url: 'http://localhost:3000' + '/questions/' + questionID + '/answers/',
         method: 'post',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -87,7 +83,6 @@ class QuestionActions {
       axios({
         url: 'http://localhost:3000' + '/questions/' + questionID + '/answers/' + answerID,
         method: 'delete',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -107,7 +102,6 @@ class QuestionActions {
         url: 'http://localhost:3000' + '/questions',
         method: 'post',
         params: {quizID},
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -125,7 +119,6 @@ class QuestionActions {
       axios({
         url: 'http://localhost:3000' + '/questions/' + questionID,
         method: 'delete',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -143,7 +136,6 @@ class QuestionActions {
       axios({
         url: 'http://localhost:3000' + '/questions/' + questionID,
         method: 'get',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {

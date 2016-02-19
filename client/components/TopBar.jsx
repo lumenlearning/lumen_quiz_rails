@@ -3,6 +3,7 @@ import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import QuizActions from '../Actions/QuizActions';
 
 export default class TopBar extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ export default class TopBar extends React.Component {
       quizName: 'Quiz Builder',
       page: 'Create Quiz'
     }
+
+    this.setName = this.setName.bind(this);
   }
 
   componentDidMount(){
@@ -32,7 +35,13 @@ export default class TopBar extends React.Component {
         page: 'Create Question'
       })
     }
-    // Need to set quiz name as well
+    if (this.props.quiz_id) {
+      QuizActions.getQuizName(this.props.quiz_id, this.setName)
+    }
+  }
+
+  setName(name) {
+    this.setState({quizName: name})
   }
 
   render() {

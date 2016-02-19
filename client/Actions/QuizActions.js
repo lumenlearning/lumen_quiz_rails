@@ -7,7 +7,6 @@ class QuizActions {
       axios({
         url: 'http://localhost:3000' + '/questions/' + questionID,
         method: 'delete',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
@@ -26,12 +25,28 @@ class QuizActions {
       axios({
         url: 'http://localhost:3000' + '/quizzes/' + quizID,
         method: 'get',
-        headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(
         (response) => {
           dispatch(response.data)
           callback()
+        }
+      )
+      .catch((response) => {
+        console.log(response);
+      });
+    }
+  }
+
+  getQuizName(quizID, callback) {
+    return (dispatch)=>{
+      axios({
+        url: 'http://localhost:3000' + '/quizzes/' + quizID,
+        method: 'get',
+      })
+      .then(
+        (response) => {
+          callback(response.data.name)
         }
       )
       .catch((response) => {

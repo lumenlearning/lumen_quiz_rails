@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Quiz from './Quiz';
 import QuizzesStore from '../Stores/QuizzesStore.js'
 import QuizzesActions from '../Actions/QuizzesActions.js'
@@ -18,9 +17,20 @@ export default class Quizzes extends React.Component {
     return (
       <div>
         {this.state.quizzes.map((quiz) => {
-          return <Quiz name={quiz.name} key={quiz.id} />
+          return (
+            <Quiz 
+              name = {quiz.name} 
+              key = {quiz.id} 
+              id = {quiz.id} 
+              handlePreviewQuiz = {(id) => this.handlePreviewQuiz(id)}
+            />
+          )
         })}
       </div>
     )
+  }
+
+  handlePreviewQuiz(id) {
+    this.props.history.pushState(null, '/quizzes/' + id + '/preview')
   }
 }
