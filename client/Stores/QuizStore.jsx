@@ -11,7 +11,6 @@ class QuizStore {
 
   set(data) {
     this.setState(data)
-    debugger;
   }
 
 }

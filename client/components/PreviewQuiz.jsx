@@ -3,6 +3,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import Snackbar from 'material-ui/lib/snackbar';
 import QuizActions from '../Actions/QuizActions';
 import QuizStore from '../Stores/QuizStore';
+import PreviewQuestion from './PreviewQuestion.jsx'
 
 const styles = {
   snackbar: {
@@ -32,18 +33,20 @@ export default class PreviewQuiz extends React.Component {
 
   questions() {
     let questions = []
-    {this.state.questions.map((question) => {
-      questions.push(<PreviewQuestion 
-        key = {question.key}
-        id = {question.key}
-        answers = {question.answers}
-        content = {question.content}
-        quiz_id = {this.props.params.quiz_id}
-        history = {this.props.history}
-        deleteQuestion = {(id) => this.deleteQuestion(id)}
-        openSnackbar = {() => this.openSnackbar()}
-      />)
-    })}
+    if (this.state.quiz.questions) {
+      {this.state.quiz.questions.map((question) => {
+        questions.push(<PreviewQuestion 
+          key = {question.id}
+          id = {question.id}
+          answers = {question.answers}
+          content = {question.content}
+          quiz_id = {this.props.params.quiz_id}
+          history = {this.props.history}
+          deleteQuestion = {(id) => this.deleteQuestion(id)}
+          openSnackbar = {() => this.openSnackbar()}
+        />)
+      })}
+    }
     return questions
   }
 
@@ -63,7 +66,7 @@ export default class PreviewQuiz extends React.Component {
           default={true} 
           onClick={(e) => this.addNewQuestion(e)}
         />
-
+        {this.questions()}
       </div>
     )
   }

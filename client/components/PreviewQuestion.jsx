@@ -64,7 +64,7 @@ export default class PreviewQuestion extends React.Component {
   }
 
   parseHTMLContent() { 
-    let html = {__html: this.state.content};
+    let html = {__html: this.props.content};
     let id = "question-" + this.props.id 
     return <div className="question-preview-content" id={id} dangerouslySetInnerHTML={html} />
   }
@@ -76,8 +76,9 @@ export default class PreviewQuestion extends React.Component {
       var answerNum = allAnswers.length + 1
       allAnswers.push(
         <PreviewAnswer 
-        key = {key}
-        id = {answerNum}
+        key = {answers[key].id}
+        id = {answers[key].id}
+        number = {answerNum}
         quiz_id = {this.props.quiz_id}
         answer_id = {key}
         question_id = {this.props.id}
@@ -133,9 +134,7 @@ export default class PreviewQuestion extends React.Component {
     )
   }
   editQuestionInline(obj) {
-    base.post(`${this.props.quiz_id}/questions/${this.props.id}/content`, {
-      data: obj
-    });
+    // Save Edits
     this.props.openSnackbar();
   }
 
