@@ -23,6 +23,7 @@ export default class PreviewQuiz extends React.Component {
     }
 
     this.onChange = this.onChange.bind(this);
+    this.transitionQuestion = this.transitionQuestion.bind(this);
   }
 
   componentDidMount(){
@@ -93,6 +94,7 @@ export default class PreviewQuiz extends React.Component {
   }
 
   addNewQuestion() {
+    QuestionActions.createQuestion(this.props.params.quiz_id, this.transitionQuestion)
   }
 
   handleEditQuestionInline(text, questionID) {
@@ -101,5 +103,9 @@ export default class PreviewQuiz extends React.Component {
 
   handleEditAnswerInline(val, questionID, id) {
     QuestionActions.updateAnswer(val, questionID, id, this.onChange);
+  }
+
+  transitionQuestion(quizID, questionID) {
+    this.props.history.pushState(null, "/quizzes/" + quizID + '/questions/' + questionID)
   }
 }
