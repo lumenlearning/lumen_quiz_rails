@@ -3,6 +3,7 @@ import QuestionActions from '../../Actions/QuestionActions'
 import QuestionStore from '../../Stores/QuestionStore'
 import QuestionContent from './QuestionContent'
 import AnswersContainer from './AnswersContainer'
+import GuidSearch from './GuidSearch.jsx';
 
 export default class QuestionContainer extends React.Component {
   constructor(props) {
@@ -24,18 +25,18 @@ export default class QuestionContainer extends React.Component {
   render() {
     return (
       <div>
+        <GuidSearch 
+          guid = {this.state.guid}
+          handleUpdateGuid = {(guid) => this.handleUpdateGuid(guid)}
+        />
         <h3>Question</h3>
         <QuestionContent 
-          quiz_id = {this.props.params.quiz_id} 
-          question_id = {this.props.params.question_id}
           handleUpdateQuestion = {(text) => this.handleUpdateQuestion(text)}
-          content = {this.state.question.content}
+          content = {this.state.content}
         />
         <br />
         <AnswersContainer 
-          quiz_id = {this.props.params.quiz_id} 
-          question_id = {this.state.question_id}
-          answers = {this.state.question.answers}
+          answers = {this.state.answers}
           handleUpdateAnswer = {(val, id) => this.handleUpdateAnswer(val, id)}
           handleAddAnswerField = {() => this.handleAddAnswerField()}
           handleDeleteAnswerField = {(id) => this.handleDeleteAnswerField(id)}
@@ -61,9 +62,13 @@ export default class QuestionContainer extends React.Component {
     QuestionActions.deleteAnswer(this.props.params.question_id, id, this.onChange)
   }
 
+  handleUpdateGuid(guid) {
+    QuestionActions.updateGuid(guid, this.props.params.question_id, this.state.guid.id, this.onChange)
+  }
+
   checkMultipleCorrect() {
     let checkedAnswers = []
-    let answers = this.state.question.answers
+    let answers = this.state.answers
     for (var key in answers) {
       if (answers.hasOwnProperty(key) && answers[key].correct === true) {
         checkedAnswers.push(answers[key])

@@ -11,19 +11,19 @@ class AnswersController < ApplicationController
     else
       @answer.update(content: data)
     end
-    render json: @question, include: :answers
+    render json: @question, :include => [:answers, :guid]
   end
 
   def create
     @question = Question.find(params[:question_id])
     @answer = Answer.create(correct: false, question_id: @question.id)
-    render json: @question, include: :answers
+    render json: @question, :include => [:answers, :guid]
   end
 
   def destroy
     @answer = Answer.find(params[:id])
     @question = Question.find(params[:question_id])
     @answer.destroy
-    render json: @question, include: :answers
+    render json: @question, :include => [:answers, :guid]
   end
 end

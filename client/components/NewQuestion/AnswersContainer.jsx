@@ -44,8 +44,6 @@ export default class AnswersContainer extends React.Component {
         answers.push(
           <Answer 
             key={this.props.answers[i].id}
-            quiz_id={this.props.quiz_id}
-            question_id = {this.props.question_id}
             id={this.props.answers[i].id}
             handleDeleteAnswerField={(id) => this.handleDeleteAnswerField(id)}
             content = {this.props.answers[i].content}

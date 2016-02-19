@@ -4,18 +4,14 @@ import QuestionActions from '../Actions/QuestionActions.js'
 class QuestionStore {
   constructor(){
     this.bindListeners({
-      set: [QuestionActions.updateQuestion, QuestionActions.fetch, QuestionActions.updateAnswer, QuestionActions.createAnswer, QuestionActions.deleteAnswer]
+      set: [QuestionActions.updateQuestion, QuestionActions.fetch, QuestionActions.updateAnswer, QuestionActions.createAnswer, QuestionActions.deleteAnswer, QuestionActions.updateGuid]
     });
 
-    this.state = {
-      question: {}
-    }
+    this.state = {}
   }
 
   set(data) {
-    this.setState({
-      question: data
-    })
+    this.setState(data)
   }
 }
 
