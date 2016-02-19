@@ -134,7 +134,7 @@ export default class PreviewQuestion extends React.Component {
     )
   }
   editQuestionInline(obj) {
-    // Save Edits
+    this.props.handleEditQuestionInline(obj, this.props.id);
     this.props.openSnackbar();
   }
 

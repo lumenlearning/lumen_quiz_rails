@@ -2,8 +2,10 @@ import React from 'react';
 import FlatButton from 'material-ui/lib/flat-button';
 import Snackbar from 'material-ui/lib/snackbar';
 import QuizActions from '../Actions/QuizActions';
+import QuestionActions from '../Actions/QuestionActions';
 import QuizStore from '../Stores/QuizStore';
 import PreviewQuestion from './PreviewQuestion.jsx'
+import _ from 'lodash'
 
 const styles = {
   snackbar: {
@@ -44,10 +46,11 @@ export default class PreviewQuiz extends React.Component {
           history = {this.props.history}
           deleteQuestion = {(id) => this.deleteQuestion(id)}
           openSnackbar = {() => this.openSnackbar()}
+          handleEditQuestionInline = {(text,questionID) => this.handleEditQuestionInline(text,questionID)}
         />)
       })}
     }
-    return questions
+    return _.sortBy(questions, 'key')
   }
 
   render() {
@@ -89,6 +92,9 @@ export default class PreviewQuiz extends React.Component {
   }
 
   addNewQuestion() {
- 
+  }
+
+  handleEditQuestionInline(text, questionID) {
+    QuestionActions.updateQuestion(text, questionID, this.onChange);
   }
 }
