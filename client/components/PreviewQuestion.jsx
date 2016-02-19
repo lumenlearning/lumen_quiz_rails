@@ -8,6 +8,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import IconButton from 'material-ui/lib/icon-button';
 import EditIcon from 'material-ui/lib/svg-icons/image/edit';
 import Delete from 'material-ui/lib/svg-icons/navigation/cancel';
+import _ from 'lodash'
 
 const styles = {
   expand: {
@@ -85,6 +86,7 @@ export default class PreviewQuestion extends React.Component {
         content = {answers[key].content}
         correct = {answers[key].correct}
         openSnackbar = {(message) => this.openSnackbar(message)}
+        handleEditAnswerInline = {(val, id) => this.handleEditAnswerInline(val, id)}
         />
       )
     } 
@@ -136,6 +138,10 @@ export default class PreviewQuestion extends React.Component {
   editQuestionInline(obj) {
     this.props.handleEditQuestionInline(obj, this.props.id);
     this.props.openSnackbar();
+  }
+
+  handleEditAnswerInline(val, id) {
+    this.props.handleEditAnswerInline(val, this.props.id, id)
   }
 
   openSnackbar() {

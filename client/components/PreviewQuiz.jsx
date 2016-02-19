@@ -47,6 +47,7 @@ export default class PreviewQuiz extends React.Component {
           deleteQuestion = {(id) => this.deleteQuestion(id)}
           openSnackbar = {() => this.openSnackbar()}
           handleEditQuestionInline = {(text,questionID) => this.handleEditQuestionInline(text,questionID)}
+          handleEditAnswerInline = {(val, questionID, id) => this.handleEditAnswerInline(val, questionID, id)}
         />)
       })}
     }
@@ -96,5 +97,9 @@ export default class PreviewQuiz extends React.Component {
 
   handleEditQuestionInline(text, questionID) {
     QuestionActions.updateQuestion(text, questionID, this.onChange);
+  }
+
+  handleEditAnswerInline(val, questionID, id) {
+    QuestionActions.updateAnswer(val, questionID, id, this.onChange);
   }
 }

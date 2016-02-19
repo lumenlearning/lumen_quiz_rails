@@ -49,7 +49,7 @@ export default class PreviewAnswer extends React.Component {
   }
 
   editAnswerInline(obj) {
-    // Save Edits
+    this.props.handleEditAnswerInline(obj, this.props.id)
     this.props.openSnackbar();
   }
 }
