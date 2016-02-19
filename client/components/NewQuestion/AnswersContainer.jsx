@@ -1,6 +1,5 @@
 import React from 'react';
 import Answer from './Answer.jsx';
-import Rebase from 're-base';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import ContentAdd from 'material-ui/lib/svg-icons/content/add';
 import FlatButton from 'material-ui/lib/flat-button';
@@ -8,8 +7,6 @@ import AddCircleOutline from 'material-ui/lib/svg-icons/content/add-circle-outli
 import Help from 'material-ui/lib/svg-icons/action/help-outline';
 import Popover from 'material-ui/lib/popover/popover';
 import _ from 'lodash'
-
-const base = Rebase.createClass('https://lumenquiz.firebaseio.com/');
 
 const styles = {
   add: {
@@ -54,6 +51,7 @@ export default class AnswersContainer extends React.Component {
             content = {this.props.answers[i].content}
             correct = {this.props.answers[i].correct}
             handleUpdateAnswer = {(val, id) => this.handleUpdateAnswer(val, id)}
+            checkMultipleCorrect = {() => this.props.checkMultipleCorrect()}
           />
         )
       }
@@ -62,7 +60,7 @@ export default class AnswersContainer extends React.Component {
   }
 
   render() {
-    let header = this.state.multipleCorrect ? 'Answers: Multiple Correct' : 'Answers: Multiple Choice'
+    let header = this.props.checkMultipleCorrect() == true ? 'Answers: Multiple Correct' : 'Answers: Multiple Choice'
     return (
       <div>
         <h3>

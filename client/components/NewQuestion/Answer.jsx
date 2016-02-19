@@ -27,7 +27,7 @@ export default class Answer extends React.Component {
           checked={this.props.correct}
           iconStyle={{fill:'rgb(75, 191, 107)', width:'2rem', height:'2rem'}}
           style={{position:'absolute', top:'10px', width:'10px'}}
-          checkedIcon={this.props.multipleCorrect ? <CheckboxMultiple /> : <CheckboxSingle />}
+          checkedIcon={this.props.checkMultipleCorrect() == true ? <CheckboxMultiple /> : <CheckboxSingle />}
           unCheckedIcon={<Unchecked />}
         />
         <textarea 

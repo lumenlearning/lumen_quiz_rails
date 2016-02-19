@@ -10,6 +10,7 @@ export default class QuestionContainer extends React.Component {
     this.state = QuestionStore.getState();
 
     this.onChange = this.onChange.bind(this);
+    this.checkMultipleCorrect = this.checkMultipleCorrect.bind(this);
   }
 
   onChange() {
@@ -38,6 +39,7 @@ export default class QuestionContainer extends React.Component {
           handleUpdateAnswer = {(val, id) => this.handleUpdateAnswer(val, id)}
           handleAddAnswerField = {() => this.handleAddAnswerField()}
           handleDeleteAnswerField = {(id) => this.handleDeleteAnswerField(id)}
+          checkMultipleCorrect = {() => this.checkMultipleCorrect()}
         />
       </div>
     )
@@ -48,7 +50,7 @@ export default class QuestionContainer extends React.Component {
   }
 
   handleUpdateAnswer(val, id) {
-    QuestionActions.updateAnswer(val, this.props.params.question_id, id, this.onChange)
+    QuestionActions.updateAnswer(val, this.props.params.question_id, id, this.onChange, this.checkMultipleCorrect)
   }
 
   handleAddAnswerField() {
@@ -58,4 +60,16 @@ export default class QuestionContainer extends React.Component {
   handleDeleteAnswerField(id) {
     QuestionActions.deleteAnswer(this.props.params.question_id, id, this.onChange)
   }
+
+  checkMultipleCorrect() {
+    let checkedAnswers = []
+    let answers = this.state.question.answers
+    for (var key in answers) {
+      if (answers.hasOwnProperty(key) && answers[key].correct === true) {
+        checkedAnswers.push(answers[key])
+      }
+    }
+    return checkedAnswers.length > 1 ? true : false
+  }
+
 }

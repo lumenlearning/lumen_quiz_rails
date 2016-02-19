@@ -22,7 +22,7 @@ class QuestionActions {
     }
   }
 
-  updateAnswer(data, questionID, answerID, callback) {
+  updateAnswer(data, questionID, answerID, callback, callback2) {
     return(dispatch) => {
       axios({
         url: 'http://localhost:3000' + '/questions/' + questionID + '/answers/' + answerID,
@@ -34,6 +34,7 @@ class QuestionActions {
         (response) => {
           dispatch(response.data)
           callback()
+          callback2()
         }
       )
       .catch((response) => {
