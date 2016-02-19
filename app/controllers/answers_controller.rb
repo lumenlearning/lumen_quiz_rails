@@ -13,4 +13,10 @@ class AnswersController < ApplicationController
     end
     render json: @question, include: :answers
   end
+
+  def create
+    @question = Question.find(params[:question_id])
+    @answer = Answer.create(correct: false, question_id: @question.id)
+    render json: @question, include: :answers
+  end
 end

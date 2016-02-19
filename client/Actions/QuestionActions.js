@@ -22,12 +22,31 @@ class QuestionActions {
     }
   }
 
-  updateAnswer(data, answerID, callback) {
+  updateAnswer(data, questionID, answerID, callback) {
     return(dispatch) => {
       axios({
-        url: 'http://localhost:3000' + '/answers/' + answerID,
+        url: 'http://localhost:3000' + '/questions/' + questionID + '/answers/' + answerID,
         method: 'put',
         params: {data},
+        headers: {'Access-Control-Allow-Origin': '*'}
+      })
+      .then(
+        (response) => {
+          dispatch(response.data)
+          callback()
+        }
+      )
+      .catch((response) => {
+        console.log(response);
+      });
+    }
+  }
+
+  createAnswer(questionID, callback) {
+    return(dispatch) => {
+      axios({
+        url: 'http://localhost:3000' + '/questions/' + questionID + '/answers/',
+        method: 'post',
         headers: {'Access-Control-Allow-Origin': '*'}
       })
       .then(

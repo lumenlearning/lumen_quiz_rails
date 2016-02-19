@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/lib/flat-button';
 import AddCircleOutline from 'material-ui/lib/svg-icons/content/add-circle-outline';
 import Help from 'material-ui/lib/svg-icons/action/help-outline';
 import Popover from 'material-ui/lib/popover/popover';
+import _ from 'lodash'
 
 const base = Rebase.createClass('https://lumenquiz.firebaseio.com/');
 
@@ -57,7 +58,7 @@ export default class AnswersContainer extends React.Component {
         )
       }
     }
-    return answers
+    return _.sortBy(answers, 'key')
   }
 
   render() {
@@ -117,6 +118,7 @@ export default class AnswersContainer extends React.Component {
   }
 
   addAnswerField() {
+    this.props.handleAddAnswerField()
   }
 
   handleUpdateAnswer(val, id) {
