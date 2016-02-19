@@ -12,6 +12,10 @@ export default class QuestionContainer extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  onChange() {
+    this.setState(QuestionStore.getState())
+  }
+
   componentDidMount() {
     QuestionActions.fetch(this.props.params.question_id, this.onChange)
   }
@@ -33,6 +37,7 @@ export default class QuestionContainer extends React.Component {
           answers = {this.state.question.answers}
           handleUpdateAnswer = {(val, id) => this.handleUpdateAnswer(val, id)}
           handleAddAnswerField = {() => this.handleAddAnswerField()}
+          handleDeleteAnswerField = {(id) => this.handleDeleteAnswerField(id)}
         />
       </div>
     )
@@ -50,7 +55,7 @@ export default class QuestionContainer extends React.Component {
     QuestionActions.createAnswer(this.props.params.question_id, this.onChange)
   }
 
-  onChange() {
-    this.setState(QuestionStore.getState())
+  handleDeleteAnswerField(id) {
+    QuestionActions.deleteAnswer(this.props.params.question_id, id, this.onChange)
   }
 }

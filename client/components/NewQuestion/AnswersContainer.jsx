@@ -50,7 +50,7 @@ export default class AnswersContainer extends React.Component {
             quiz_id={this.props.quiz_id}
             question_id = {this.props.question_id}
             id={this.props.answers[i].id}
-            deleteAnswerField={(id) => this.deleteAnswerField(id)}
+            handleDeleteAnswerField={(id) => this.handleDeleteAnswerField(id)}
             content = {this.props.answers[i].content}
             correct = {this.props.answers[i].correct}
             handleUpdateAnswer = {(val, id) => this.handleUpdateAnswer(val, id)}
@@ -114,7 +114,8 @@ export default class AnswersContainer extends React.Component {
     });
   };
 
-  deleteAnswerField(id) {
+  handleDeleteAnswerField(id) {
+    this.props.handleDeleteAnswerField(id)
   }
 
   addAnswerField() {

@@ -49,6 +49,7 @@ export default class Answer extends React.Component {
   }
 
   deleteAnswerField() {
+    this.props.handleDeleteAnswerField(this.props.id)
   }
 
   correctnessToggle() {
