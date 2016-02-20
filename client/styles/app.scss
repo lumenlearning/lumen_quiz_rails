@@ -242,6 +242,14 @@ input {
   }
 }
 
+.quiz-list-name {
+  cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    color: $primary;
+  }
+}
+
 
 @media(max-width:900px) {
   .answer-wrapper {

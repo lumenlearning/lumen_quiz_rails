@@ -1,4 +1,3 @@
-require 'pry'
 class QuestionsController < ApplicationController
   def update
     data = params[:data]

@@ -16,6 +16,7 @@ export default class Quizzes extends React.Component {
   render() {
     return (
       <div>
+        <br />
         {this.state.quizzes.map((quiz) => {
           return (
             <Quiz 

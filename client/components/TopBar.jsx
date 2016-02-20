@@ -27,13 +27,9 @@ export default class TopBar extends React.Component {
 
   fetchState(props) {
     if (props.location.pathname.indexOf('preview') !== -1) {
-      this.setState({
-        page: 'Quiz Preview'
-      })
+      this.setState({page: 'Quiz Preview'})
     } else if (props.location.pathname.indexOf('questions') !== -1) {
-      this.setState({
-        page: 'Create Question'
-      })
+      this.setState({page: 'Create Question'})
     }
     if (this.props.quiz_id) {
       QuizActions.getQuizName(this.props.quiz_id, this.setName)
